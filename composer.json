@@ -9,7 +9,8 @@
         "inspira/container": "dev-master",
         "inspira/config": "dev-master",
         "inspira/collection": "dev-master",
-        "inspira/contracts": "dev-master"
+        "inspira/contracts": "dev-master",
+        "inspira/console": "dev-master"
     },
     "license": "MIT",
     "autoload": {
