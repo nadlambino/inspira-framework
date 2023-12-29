@@ -1,0 +1,27 @@
+{
+    "name": "inspira/framework",
+    "description": "PHP Framework built with Inspira components.",
+    "type": "library",
+    "require": {
+        "inspira/view": "dev-master",
+        "inspira/pdo-database": "dev-master",
+        "inspira/http": "dev-master",
+        "inspira/container": "dev-master",
+        "inspira/config": "dev-master",
+        "inspira/collection": "dev-master",
+        "inspira/contracts": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Inspira\\Framework\\": "."
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronald Lambino",
+            "email": "50892397+nadlambino@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
