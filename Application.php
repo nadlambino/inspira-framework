@@ -120,7 +120,7 @@ class Application extends Container
 
 	public function isConsoleApp(): bool
 	{
-		return $this->isConsoleApp();
+		return $this->isConsoleApp;
 	}
 
 	public function setBasePath(string $path): static
