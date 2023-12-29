@@ -91,6 +91,8 @@ class Application extends Container
 	 */
 	public function boot(): self
 	{
+		$this->singleton(Application::class, fn() => $this);
+
 		foreach ($this->providers as $provider) {
 			$this->singleton($provider);
 

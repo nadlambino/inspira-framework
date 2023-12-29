@@ -14,8 +14,6 @@ class ApplicationProvider extends Provider
 {
 	public function register(): void
 	{
-		$this->app->setResolved(Application::class, $this);
-		$this->app->singleton(Application::class);
 		$this->app->setResolved(Env::class, new Env($this->app->getBasePath()));
 		$this->app->setResolved(Config::class, new Config($this->app->getConfigsPath()));
 		$this->app->singleton(Config::class);
