@@ -1,11 +1,11 @@
 <?php
 
-use Inspira\Framework\Application;
+use Inspira\Container\Container;
 
-if (!function_exists('app')) {
-	function app(): Application
+if (!function_exists('container')) {
+	function container(): Container
 	{
-		return Application::getInstance();
+		return Container::getInstance();
 	}
 }
 

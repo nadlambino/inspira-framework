@@ -79,7 +79,7 @@ class Pipeline
 	{
 		foreach ($middlewares as $middleware) {
 			/** @var Middleware $middlewareInstance */
-			$middlewareInstance = app()->make($middleware);
+			$middlewareInstance = $this->application->make($middleware);
 			if ($global && isset($middlewareInstance->global) && $middlewareInstance->global === false) {
 				continue;
 			}
