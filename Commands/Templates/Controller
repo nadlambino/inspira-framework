@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controllers;
+
+use Inspira\Http\Request;
+use Inspira\View\View;
+
+class CLASS_NAME
+{
+	public function index(Request $request): View
+	{
+		return view('pages/index');
+	}
+}

@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Models;
+
+use Inspira\Database\ORM\Model;
+
+class CLASS_NAME extends Model
+{
+
+}

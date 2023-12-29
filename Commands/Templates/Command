@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Console\Commands;
+
+use Inspira\Console\Commands\Command;
+
+class CLASS_NAME extends Command
+{
+	protected string $description = '';
+
+	/**
+	 * Define here the required arguments of this command
+	 *
+	 * @var array $requires
+	 */
+	protected array $requires = [];
+
+	/**
+	 * Define here the optional arguments of this command
+	 *
+	 * @var array $optionals
+	 */
+	protected array $optionals = [];
+
+	public function run()
+	{
+
+	}
+}
