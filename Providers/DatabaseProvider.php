@@ -17,7 +17,7 @@ use Symfony\Component\String\Inflector\InflectorInterface;
 
 class DatabaseProvider extends Provider
 {
-	public function register()
+	public function register(): void
 	{
 		$this->app->singleton(PDO::class, fn() => (new Connection(Application::getInstance(), Config::getInstance()))->create());
 		$this->app->singleton(InflectorInterface::class, EnglishInflector::class);

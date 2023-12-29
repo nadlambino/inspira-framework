@@ -24,7 +24,7 @@ class HttpProvider extends Provider
 	 */
 	private string $routeFile = 'routes.php';
 
-	public function register()
+	public function register(): void
 	{
 		$this->app->singleton(UriInterface::class, Uri::class);
 		$this->app->singleton(ServerRequestInterface::class, Request::class);
@@ -38,7 +38,7 @@ class HttpProvider extends Provider
 	/**
 	 * @throws
 	 */
-	public function start()
+	public function start(): void
 	{
 		$routes = $this->app->getRoutesPath() . DIRECTORY_SEPARATOR . $this->routeFile;
 		RoutesRegistry::register($routes, $this->app->make(Router::class));

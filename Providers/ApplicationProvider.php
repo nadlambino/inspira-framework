@@ -12,7 +12,7 @@ use Inspira\View\View;
 
 class ApplicationProvider extends Provider
 {
-	public function register()
+	public function register(): void
 	{
 		$this->app->setResolved(Application::class, $this);
 		$this->app->singleton(Application::class);
@@ -27,7 +27,7 @@ class ApplicationProvider extends Provider
 		));
 	}
 
-	public function start()
+	public function start(): void
 	{
 		$debug = filter_var(Env::get('APP_DEBUG', true), FILTER_VALIDATE_BOOL);
 		$errorPage = new ErrorPage();

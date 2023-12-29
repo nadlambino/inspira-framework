@@ -86,16 +86,18 @@ class Application extends Container
 	];
 
 	/**
-	 * @return void
+	 * @return self
 	 * @throws
 	 */
-	public function boot(): void
+	public function boot(): self
 	{
 		foreach ($this->providers as $provider) {
 			$this->singleton($provider);
 
 			$this->make($provider)->register();
 		}
+
+		return $this;
 	}
 
 	/**
