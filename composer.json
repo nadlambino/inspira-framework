@@ -10,7 +10,8 @@
         "inspira/config": "dev-master",
         "inspira/collection": "dev-master",
         "inspira/contracts": "dev-master",
-        "inspira/console": "dev-master"
+        "inspira/console": "dev-master",
+        "inspira/error-page": "dev-master"
     },
     "license": "MIT",
     "autoload": {
