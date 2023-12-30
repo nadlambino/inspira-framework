@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Inspira\Framework\Commands;
 
-use Inspira\Console\Command;
+use Inspira\Console\Commands\Command;
 
 class Application extends Command
 {
