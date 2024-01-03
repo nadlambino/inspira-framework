@@ -105,7 +105,7 @@ class Pipeline
 			$middlewares = [
 				...$middlewares,
 				...(new Collection($classes))
-					->like('App\Middlewares')
+					->whereLike(null,'App\Middlewares')
 					->toArray()
 			];
 		}
