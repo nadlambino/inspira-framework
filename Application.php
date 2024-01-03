@@ -86,13 +86,21 @@ class Application extends Container
 	];
 
 	/**
+	 * Application constructor
+	 */
+	public function __construct()
+	{
+		$this->singleton(Application::class, fn() => $this);
+		$this->singleton(Container::class, fn() => $this);
+		parent::__construct();
+	}
+
+	/**
 	 * @return self
 	 * @throws
 	 */
 	public function boot(): self
 	{
-		$this->singleton(Application::class, fn() => $this);
-
 		foreach ($this->providers as $provider) {
 			$this->singleton($provider);
 

@@ -7,7 +7,6 @@ namespace Inspira\Framework\Providers;
 use Inspira\Config\Config;
 use Inspira\Config\Env;
 use Inspira\ErrorPage\ErrorPage;
-use Inspira\Framework\Application;
 use Inspira\View\View;
 
 class ApplicationProvider extends Provider
@@ -16,13 +15,13 @@ class ApplicationProvider extends Provider
 	{
 		$this->app->setResolved(Env::class, new Env($this->app->getBasePath()));
 		$this->app->setResolved(Config::class, new Config($this->app->getConfigsPath()));
-		$this->app->singleton(Config::class);
-		$this->app->singleton(Env::class);
-		$this->app->bind(View::class, fn() => new View(
+		$this->app->setResolved(View::class, new View(
 			$this->app->getViewsPath(),
 			$this->app->getCachePath(),
 			Config::get('app.views.use_cached', true)
 		));
+		$this->app->singleton(Config::class);
+		$this->app->singleton(Env::class);
 	}
 
 	public function start(): void
