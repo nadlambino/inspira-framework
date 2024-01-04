@@ -20,7 +20,7 @@ if (!function_exists('app')) {
 if (!function_exists('base_url')) {
 	function base_url(?string $path = null): string
 	{
-		$path = $path ? DIRECTORY_SEPARATOR . trim($path, '/') : null;
+		$path = $path ? '/' . trim($path, '/') : null;
 
 		return app()->getBaseUrl() . $path;
 	}

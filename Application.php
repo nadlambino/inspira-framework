@@ -151,7 +151,7 @@ class Application extends Container
 
 		$components = parse_url($url);
 
-		$scheme = isset($components['scheme']) ? $components['scheme'] . '://' : '';
+		$scheme = ($components['scheme'] ?? 'http') . '://';
 		$host = $components['host'] ?? 'localhost';
 		$port = isset($components['port']) && $components['port'] != '80' ? ':' . $components['port'] : '';
 
