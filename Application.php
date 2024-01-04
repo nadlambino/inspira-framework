@@ -9,6 +9,7 @@ use Inspira\Container\Container;
 use Inspira\Framework\Providers\ApplicationProvider;
 use Inspira\Framework\Providers\DatabaseProvider;
 use Inspira\Framework\Providers\HttpProvider;
+use Inspira\Http\Request;
 
 /**
  * @author Ronald Lambino
@@ -133,6 +134,22 @@ class Application extends Container
 	public function isConsoleApp(): bool
 	{
 		return $this->isConsoleApp;
+	}
+
+	/**
+	 * Get application base url
+	 */
+	public function getBaseUrl(): string
+	{
+		try {
+			/** @var Request $request*/
+			$request = $this->make(Request::class);
+			$url = (string) $request->getUri();
+		} catch (Exception) {
+			$url = $_SERVER['name'] ?? 'localhost';
+		}
+
+		return trim(pathinfo($url, PATHINFO_DIRNAME), '/');
 	}
 
 	public function setBasePath(string $path): static
