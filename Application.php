@@ -149,7 +149,13 @@ class Application extends Container
 			$url = $_SERVER['name'] ?? 'localhost';
 		}
 
-		return trim(pathinfo($url, PATHINFO_DIRNAME), '/');
+		$components = parse_url($url);
+
+		$scheme = isset($components['scheme']) ? $components['scheme'] . '://' : '';
+		$host = $components['host'] ?? 'localhost';
+		$port = isset($components['port']) && $components['port'] != '80' ? ':' . $components['port'] : '';
+
+		return $scheme . $host . $port;
 	}
 
 	public function setBasePath(string $path): static
