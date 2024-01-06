@@ -9,6 +9,7 @@ use Inspira\Container;
 use Inspira\Contracts\RenderableException;
 use Inspira\Http\Middlewares\BaseMiddleware;
 use Inspira\Http\Middlewares\Middleware;
+use Inspira\Http\Response;
 use Inspira\Http\Router\Route;
 use Inspira\Http\Router\Router;
 use Inspira\Http\Status;
@@ -50,8 +51,9 @@ class Pipeline
 
 		// $route could be an instance of RouteNotFoundException or MethodNotAllowedException, which both extends the RenderableException class
 		if ($route instanceof RenderableException) {
+			/** @var Response $response */
 			$response = $this->application->make(ResponseInterface::class);
-			return $response->withStatus($route->getCode())->content($route->render());
+			return $response->withStatus($route->getCode())->withContent($route->render());
 		}
 
 		/** Process route middlewares */

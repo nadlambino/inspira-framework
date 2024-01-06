@@ -10,6 +10,7 @@ use Inspira\Http\Response;
 use Inspira\Http\Router\Router;
 use Inspira\Http\Router\RoutesRegistry;
 use Inspira\Http\Uri;
+use Inspira\View\Exceptions\ViewNotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UriInterface;
@@ -41,6 +42,9 @@ class HttpProvider extends Provider
 	public function start(): void
 	{
 		$routes = $this->app->getRoutesPath() . DIRECTORY_SEPARATOR . $this->routeFile;
-		RoutesRegistry::register($routes, $this->app->make(Router::class));
+		/** @var Router $router */
+		$router = $this->app->make(Router::class);
+		$router->setNotFoundException(ViewNotFoundException::class);
+		RoutesRegistry::register($routes, $router);
 	}
 }
