@@ -6,7 +6,7 @@ namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\Command;
 use Inspira\Console\Input;
-use Inspira\Console\Output;
+use Inspira\Console\Output\Output;
 use Inspira\View\View as ViewAlias;
 
 class View extends Command
