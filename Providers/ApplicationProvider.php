@@ -22,6 +22,7 @@ class ApplicationProvider extends Provider
 		));
 		$this->app->singleton(Config::class);
 		$this->app->singleton(Env::class);
+		$this->app->singleton(View::class);
 	}
 
 	public function start(): void
