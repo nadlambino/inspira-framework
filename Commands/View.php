@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\Command;
-use Inspira\Console\Input;
-use Inspira\Console\Styles;
+use Inspira\Console\Contracts\InputInterface;
+use Inspira\Console\Contracts\OutputInterface;
 use Inspira\View\View as ViewAlias;
 
 class View extends Command
@@ -15,7 +15,7 @@ class View extends Command
 
 	protected array $optionals = ['clear'];
 
-	public function __construct(Input $input, Output $output, protected ViewAlias $view)
+	public function __construct(InputInterface $input, OutputInterface $output, protected ViewAlias $view)
 	{
 		parent::__construct($input, $output);
 	}

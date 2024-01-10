@@ -8,9 +8,15 @@ use Inspira\Framework\Application;
 
 abstract class Provider
 {
-	public function __construct(protected Application $app) { }
+	public function __construct(protected Application $app)
+	{
+	}
 
-	public function register(): void { }
+	public function register(): void
+	{
+	}
 
-	public function start(): void { }
+	public function start(): void
+	{
+	}
 }

@@ -14,8 +14,8 @@ class Application extends Command
 
 	public function run()
 	{
-		$port = $this->input->getArguments('port', '8000');
-		$host = $this->input->getArguments('host', 'localhost');
+		$port = $this->input->getArgument('port', '8000');
+		$host = $this->input->getArgument('host', 'localhost');
 		$address = "$host:$port";
 		$root = 'public';
 		$cmd = "php -S $address -t $root";
