@@ -3,18 +3,17 @@
 namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\CommandRegistry as Registry;
-use Inspira\Console\Console;
 use Inspira\Console\Exceptions\DuplicateCommandException;
 
-class CommandRegistry
+class CommandRegistry extends Registry
 {
 	/**
 	 * @throws DuplicateCommandException
 	 */
-	public function __construct(protected Console $console, protected Registry $registry)
+	public function __construct()
 	{
-		$this->registry->addCommand('run', Application::class);
-		$this->registry->addCommand('make', Make::class);
-		$this->registry->addCommand('view', View::class);
+		$this->addCommand('run', Application::class);
+		$this->addCommand('make', Make::class);
+		$this->addCommand('view', View::class);
 	}
 }
