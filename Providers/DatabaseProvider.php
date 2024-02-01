@@ -19,7 +19,7 @@ class DatabaseProvider extends Provider
 {
 	public function register(): void
 	{
-		$this->app->singleton(PDO::class, fn() => (new Connection(Application::getInstance(), Config::getInstance()))->create());
+		$this->app->singleton(PDO::class, fn() => (new Connection(Application::getInstance(), Config::getInstance()->get('database')))->create());
 		$this->app->singleton(InflectorInterface::class, EnglishInflector::class);
 		$this->app->bind(Query::class);
 
