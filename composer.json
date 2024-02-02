@@ -5,7 +5,7 @@
     "require": {
         "ext-pdo": "*",
         "ext-mbstring": "*",
-        "php": "^8.1",
+        "php": "8.3",
         "inspira/view": "dev-master",
         "inspira/pdo-database": "dev-master",
         "inspira/http": "dev-master",
