@@ -128,12 +128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-augmentable.git",
-                "reference": "71fae3363721752a7d4c245878a208524eeab7a5"
+                "reference": "a0987259d799349233cc91a5911bf955eb47477f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-augmentable/zipball/71fae3363721752a7d4c245878a208524eeab7a5",
-                "reference": "71fae3363721752a7d4c245878a208524eeab7a5",
+                "url": "https://api.github.com/repos/nadlambino/php-augmentable/zipball/a0987259d799349233cc91a5911bf955eb47477f",
+                "reference": "a0987259d799349233cc91a5911bf955eb47477f",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +164,7 @@
                 "issues": "https://github.com/nadlambino/php-augmentable/issues",
                 "source": "https://github.com/nadlambino/php-augmentable/tree/master"
             },
-            "time": "2024-02-02T10:50:30+00:00"
+            "time": "2024-02-08T11:25:20+00:00"
         },
         {
             "name": "inspira/closest-match",
@@ -541,12 +541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-pdo-database.git",
-                "reference": "6bd981e4a291b5f50937053cdeced833205d3f75"
+                "reference": "94f89e912eeb9ade3e9ad38ef69f75e523a02db1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-pdo-database/zipball/6bd981e4a291b5f50937053cdeced833205d3f75",
-                "reference": "6bd981e4a291b5f50937053cdeced833205d3f75",
+                "url": "https://api.github.com/repos/nadlambino/php-pdo-database/zipball/94f89e912eeb9ade3e9ad38ef69f75e523a02db1",
+                "reference": "94f89e912eeb9ade3e9ad38ef69f75e523a02db1",
                 "shasum": ""
             },
             "require": {
@@ -589,7 +589,7 @@
                 "issues": "https://github.com/nadlambino/php-pdo-database/issues",
                 "source": "https://github.com/nadlambino/php-pdo-database/tree/master"
             },
-            "time": "2024-02-04T08:09:02+00:00"
+            "time": "2024-02-11T14:47:19+00:00"
         },
         {
             "name": "inspira/utils",
@@ -1042,7 +1042,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -1121,7 +1121,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -1203,7 +1203,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -1284,7 +1284,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -1365,7 +1365,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -1563,12 +1563,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "e6349434277fd7def0af30648118e8d94da29f8f"
+                "reference": "ad99fa4dde828161c43636ca3879f0ab52b71311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/e6349434277fd7def0af30648118e8d94da29f8f",
-                "reference": "e6349434277fd7def0af30648118e8d94da29f8f",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/ad99fa4dde828161c43636ca3879f0ab52b71311",
+                "reference": "ad99fa4dde828161c43636ca3879f0ab52b71311",
                 "shasum": ""
             },
             "require": {
@@ -1584,7 +1584,7 @@
                 "symfony/http-kernel": "^6.4|^7.0",
                 "symfony/process": "^6.4|^7.0",
                 "symfony/uid": "^6.4|^7.0",
-                "twig/twig": "^3.0.4"
+                "twig/twig": "~3.8.0"
             },
             "default-branch": true,
             "bin": [
@@ -1639,7 +1639,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-03T21:13:24+00:00"
+            "time": "2024-02-09T10:53:15+00:00"
         }
     ],
     "aliases": [],
