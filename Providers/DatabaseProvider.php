@@ -6,7 +6,7 @@ namespace Inspira\Framework\Providers;
 
 use Inspira\Config\Config;
 use Inspira\Database\Builder\Query;
-use Inspira\Database\Connection;
+use Inspira\Database\ConnectionPool;
 use Inspira\Database\Connectors\MySql;
 use Inspira\Database\Connectors\PgSql;
 use Inspira\Database\Connectors\Sqlite;
@@ -19,13 +19,8 @@ class DatabaseProvider extends Provider
 {
 	public function register(): void
 	{
-		$this->app->singleton(PDO::class, fn() => (new Connection(Application::getInstance(), Config::getInstance()->get('database')))->create());
+		$this->app->singleton(PDO::class, fn() => (new ConnectionPool(Application::getInstance(), Config::getInstance()->get('database')))->create());
 		$this->app->singleton(InflectorInterface::class, EnglishInflector::class);
 		$this->app->bind(Query::class);
-
-		// PDO Connectors
-		$this->app->bind('mysql', MySql::class);
-		$this->app->bind('pgsql', PgSql::class);
-		$this->app->bind('sqlite', Sqlite::class);
 	}
 }
