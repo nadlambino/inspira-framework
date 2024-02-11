@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Inspira\Framework\Providers;
 
 use Inspira\Config\Config;
-use Inspira\Database\Builder\Query;
+use Inspira\Database\QueryBuilder\Query;
 use Inspira\Database\ConnectionPool;
 use Inspira\Database\Drivers\MySqlDriver;
 use Inspira\Database\Drivers\PgSqlDriver;
