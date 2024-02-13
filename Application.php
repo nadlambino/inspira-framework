@@ -124,7 +124,7 @@ class Application extends Container
 		$this->validatePaths();
 	}
 
-	public function runAppOnConsole(): static
+	public function runOnConsole(): static
 	{
 		$this->isConsoleApp = true;
 
