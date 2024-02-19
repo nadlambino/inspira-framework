@@ -32,6 +32,8 @@ class Application extends Container
 	 */
 	private string $basePath = '..';
 
+	private string $appPath = '/app';
+
 	private string $providersPath = '/providers';
 
 	/**
@@ -191,6 +193,13 @@ class Application extends Container
 	public function getBasePath(): string
 	{
 		return realpath($this->basePath) ?: $this->basePath;
+	}
+
+	public function getAppPath(): string
+	{
+		$path = $this->basePath . DIRECTORY_SEPARATOR . $this->appPath;
+
+		return realpath($path) ?: $path;
 	}
 
 	public function setProvidersPath(string $path): static

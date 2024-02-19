@@ -5,19 +5,32 @@ declare(strict_types=1);
 namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\Command;
+use Inspira\Console\Contracts\InputInterface;
+use Inspira\Console\Contracts\OutputInterface;
+use Inspira\Framework\Application;
 use Throwable;
 
 class Make extends Command
 {
 	protected string $description = "Create file for the given options.";
 
-	protected array $optionals = ['controller', 'model', 'command'];
+	protected array $optionals = ['controller', 'model', 'command', 'view'];
 
-	protected const DIR_MAP = [
-		'controller' => './app/Controllers/',
-		'model' => './app/Models/',
-		'command' => './console/Commands/'
-	];
+	protected array $dirMap = [];
+
+	public function __construct(InputInterface $input, OutputInterface $output, Application $application)
+	{
+		$this->input = $input;
+		$this->output = $output;
+		$this->dirMap = [
+			'controller' => app_path('Controllers'),
+			'model' => app_path('Models'),
+			'command' => app_path('Commands'),
+			'view' => $application->getViewsPath()
+		];
+
+		parent::__construct($input, $output);
+	}
 
 	public function run(): never
 	{
@@ -46,7 +59,7 @@ class Make extends Command
 	private function create(string $type, string $filename)
 	{
 		try {
-			$source = __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . ucwords($type);
+			$source = __DIR__ . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . ucwords($type);
 
 			if (!file_exists($source)) {
 				$this->output->error("Failed to create $type $filename", false);
@@ -56,7 +69,14 @@ class Make extends Command
 			$content = file_get_contents($source);
 			$content = str_replace("CLASS_NAME", $filename, $content);
 
-			$directory = self::DIR_MAP[$type];
+			$directory = $this->dirMap[$type] ?? null;
+
+			if (!$directory) {
+				$this->output->error("Failed to create $type $filename", false);
+				return;
+			}
+
+			$directory .= '/';
 
 			if (!file_exists($directory)) {
 				mkdir($directory, 0777, true);
@@ -65,8 +85,7 @@ class Make extends Command
 			$target = $directory . $filename . '.php';
 
 			if (file_exists($target)) {
-				$filetype = ucwords($type);
-				$this->output->info("$filetype $filename already exists.");
+				$this->output->info("$filename $type already exists.");
 			}
 
 			file_put_contents($target, $content);
@@ -75,7 +94,7 @@ class Make extends Command
 				$this->output->error("Failed to create $type $target", false);
 			}
 
-			$this->output->success("$filename is successfully created", false);
+			$this->output->success("$filename $type is successfully created", false);
 		} catch (Throwable $exception) {
 			$this->output->error($exception->getMessage(), false);
 		}

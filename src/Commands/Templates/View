@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Views;
+
+use Inspira\View\Components\Component;
+
+class CLASS_NAME extends Component
+{
+
+}
