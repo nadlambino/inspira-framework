@@ -27,7 +27,7 @@
             "Inspira\\Framework\\": "."
         },
         "files": [
-            "Helpers/functions.php"
+            "src/functions.php"
         ]
     },
     "authors": [

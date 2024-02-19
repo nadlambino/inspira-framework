@@ -26,6 +26,15 @@ if (!function_exists('base_url')) {
 	}
 }
 
+if (!function_exists('base_path')) {
+	function base_path(?string $path = null): string
+	{
+		$path = $path ? '/' . trim($path, '/') : null;
+
+		return app()->getBasePath() . $path;
+	}
+}
+
 if (!function_exists('vite')) {
 	/**
 	 * @throws Exception
