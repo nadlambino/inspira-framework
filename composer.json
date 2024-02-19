@@ -24,7 +24,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Inspira\\Framework\\": "."
+            "Inspira\\Framework\\": "src"
         },
         "files": [
             "src/functions.php"
