@@ -96,6 +96,13 @@ class Application extends Container
 		parent::__construct();
 	}
 
+	public function addProviders(array $providers): self
+	{
+		$this->providers = array_merge($this->providers, $providers);
+
+		return $this;
+	}
+
 	/**
 	 * @return self
 	 * @throws
