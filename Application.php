@@ -32,6 +32,8 @@ class Application extends Container
 	 */
 	private string $basePath = '..';
 
+	private string $providersPath = '/providers';
+
 	/**
 	 * The path where the routes.php is located
 	 * The value will be prefixed by the $basePath
@@ -93,7 +95,21 @@ class Application extends Container
 	{
 		$this->singleton(Application::class, fn() => $this);
 		$this->singleton(Container::class, fn() => $this);
+		$this->addProviders($this->getApplicationProviders());
 		parent::__construct();
+	}
+
+	protected function getApplicationProviders(): array
+	{
+		$files = glob($this->getProvidersPath() . '/*.php');
+
+		foreach ($files as $file) {
+			require_once $file;
+		}
+
+		$classes = get_declared_classes();
+
+		return collection($classes)->whereLike('', '%Providers')->toArray();
 	}
 
 	public function addProviders(array $providers): self
@@ -167,7 +183,7 @@ class Application extends Container
 
 	public function setBasePath(string $path): static
 	{
-		$this->basePath = rtrim($path);
+		$this->basePath = trim($path, DIRECTORY_SEPARATOR);
 
 		return $this;
 	}
@@ -175,6 +191,20 @@ class Application extends Container
 	public function getBasePath(): string
 	{
 		return realpath($this->basePath) ?: $this->basePath;
+	}
+
+	public function setProvidersPath(string $path): static
+	{
+		$this->providersPath = trim($path, DIRECTORY_SEPARATOR);
+
+		return $this;
+	}
+
+	public function getProvidersPath(): string
+	{
+		$path = $this->basePath . DIRECTORY_SEPARATOR . $this->providersPath;
+
+		return realpath($path) ?: $path;
 	}
 
 	public function setRoutesPath(string $path): static
