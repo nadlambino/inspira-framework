@@ -13,6 +13,12 @@ class ApplicationProvider extends Provider
 {
 	public function register(): void
 	{
+		$debug = filter_var(Env::get('APP_DEBUG', true), FILTER_VALIDATE_BOOL);
+		$errorPage = new ErrorPage();
+		$errorPage->isEnabled($debug)
+			->isRunningOnConsole($this->app->isConsoleApp())
+			->register();
+
 		$this->app->setResolved(Env::class, new Env($this->app->getBasePath()));
 		$this->app->setResolved(Config::class, new Config($this->app->getConfigsPath()));
 		$this->app->setResolved(View::class, new View(
@@ -20,6 +26,7 @@ class ApplicationProvider extends Provider
 			$this->app->getCachePath(),
 			Config::get('app.views.use_cached', true)
 		));
+
 		$this->app->singleton(Config::class);
 		$this->app->singleton(Env::class);
 		$this->app->singleton(View::class);
@@ -27,12 +34,6 @@ class ApplicationProvider extends Provider
 
 	public function start(): void
 	{
-		$debug = filter_var(Env::get('APP_DEBUG', true), FILTER_VALIDATE_BOOL);
-		$errorPage = new ErrorPage();
-		$errorPage->isEnabled($debug)
-			->isRunningOnConsole($this->app->isConsoleApp())
-			->register();
-
 		date_default_timezone_set(Config::get('app.timezone', 'UTC'));
 	}
 }
