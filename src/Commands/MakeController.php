@@ -10,6 +10,8 @@ class MakeController extends Command
 {
 	use FileCreator;
 
+	protected string $description = "Make a controller class.";
+
 	protected array $requires = ['name'];
 
 	public function run()

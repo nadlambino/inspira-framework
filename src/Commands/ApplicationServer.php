@@ -8,7 +8,7 @@ use Inspira\Console\Commands\Command;
 
 class ApplicationServer extends Command
 {
-	protected string $description = 'Start the application.';
+	protected string $description = 'Serve the application.';
 
 	protected array $optionals = ['host', 'port'];
 
