@@ -6,7 +6,7 @@ namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\Command;
 
-class Application extends Command
+class ApplicationServer extends Command
 {
 	protected string $description = 'Start the application.';
 
