@@ -10,7 +10,7 @@ class MakeCommand extends Command
 {
 	use FileCreator;
 
-	protected string $description = "Make a command class.";
+	protected string $description = "Make a command class";
 
 	protected array $requires = ['name'];
 

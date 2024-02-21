@@ -10,7 +10,7 @@ class MakeView extends Command
 {
 	use FileCreator;
 
-	protected string $description = "Make a view file or component class.";
+	protected string $description = "Make a view file or component class";
 
 	protected array $requires = ['name'];
 

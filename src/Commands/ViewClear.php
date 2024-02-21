@@ -11,7 +11,7 @@ use Inspira\View\View;
 
 class ViewClear extends Command
 {
-	protected string $description = "Clear view cache.";
+	protected string $description = "Clear view cache";
 
 	public function __construct(InputInterface $input, OutputInterface $output, protected View $view)
 	{
