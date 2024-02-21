@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Views;
 
-use Inspira\View\Components\Component;
+use Inspira\View\Component;
 
 class CLASS_NAME extends Component
 {

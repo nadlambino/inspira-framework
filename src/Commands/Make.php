@@ -59,7 +59,7 @@ class Make extends Command
 	private function create(string $type, string $filename)
 	{
 		try {
-			$source = __DIR__ . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . ucwords($type);
+			$source = __DIR__ . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . ucwords($type);
 
 			if (!file_exists($source)) {
 				$this->output->error("Failed to create $type $filename", false);

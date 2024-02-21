@@ -15,12 +15,12 @@ trait FileCreator
 	protected function create(string $type, string $filename, string $directory): void
 	{
 		try {
-			$filename = preg_replace('/\s+/', '', ucwords($filename));
+			$filename = preg_replace('/[^a-zA-Z\d\-_.]/', '', $filename);
 			$directory = trim($directory, DIRECTORY_SEPARATOR) . '/';
-			$source = __DIR__ . DIRECTORY_SEPARATOR . 'Templates' . DIRECTORY_SEPARATOR . ucwords($type);
+			$source = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $type;
 
 			if (!file_exists($source)) {
-				$this->output->error("Failed to create $type $filename");
+				$this->output->error("Failed to create $filename");
 			}
 
 			$content = str_replace("CLASS_NAME", $filename, file_get_contents($source));
@@ -32,16 +32,16 @@ trait FileCreator
 			$target = $directory . $filename . '.php';
 
 			if (file_exists($target)) {
-				$this->output->info("$filename $type already exists.");
+				$this->output->info("$filename already exists.");
 			}
 
 			file_put_contents($target, $content);
 
 			if (!file_exists($target)) {
-				$this->output->error("Failed to create $type $target");
+				$this->output->error("Failed to create $target");
 			}
 
-			$this->output->success("$filename $type is successfully created", false);
+			$this->output->success("$filename is successfully created", false);
 		} catch (Throwable $exception) {
 			$this->output->error($exception->getMessage());
 		}
