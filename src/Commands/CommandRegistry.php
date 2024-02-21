@@ -7,9 +7,6 @@ use Inspira\Console\Exceptions\DuplicateCommandException;
 
 class CommandRegistry extends Registry
 {
-	/**
-	 * @throws DuplicateCommandException
-	 */
 	public function __construct()
 	{
 		$this->addCommand('app:serve', ApplicationServer::class);
@@ -17,6 +14,6 @@ class CommandRegistry extends Registry
 		$this->addCommand('make:controller', MakeController::class);
 		$this->addCommand('make:model', MakeModel::class);
 		$this->addCommand('make:view', MakeView::class);
-		$this->addCommand('view', View::class);
+		$this->addCommand('view:clear', ViewClear::class);
 	}
 }
