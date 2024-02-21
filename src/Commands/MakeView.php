@@ -17,11 +17,12 @@ class MakeView extends Command
 	public function run()
 	{
 		$name = $this->input->getArgument('name');
-		$isComponent = $this->input->getArgument('c');
-		$type = 'view';
-		$type .= $isComponent ? '.component' : '';
-		$directory = $isComponent ? app_path('Views') : base_path('assets/views');
+		$withComponent = $this->input->getArgument('c');
 
-		$this->create($type, $name, $directory);
+		if ($withComponent) {
+			$this->create('view.component', $name, app_path('Views'));
+		}
+
+		$this->create('view', pascal_to_kebab($name), base_path('assets/views'));
 	}
 }
