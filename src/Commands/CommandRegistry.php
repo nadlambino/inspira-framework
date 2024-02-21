@@ -13,6 +13,7 @@ class CommandRegistry extends Registry
 	public function __construct()
 	{
 		$this->addCommand('app:serve', ApplicationServer::class);
+		$this->addCommand('make:controller', MakeController::class);
 		$this->addCommand('make', Make::class);
 		$this->addCommand('view', View::class);
 	}
