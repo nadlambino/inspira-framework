@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Console\Commands;
+namespace Console\{{ NAMESPACE }}\Commands;
 
 use Inspira\Console\Commands\Command;
 
-class CLASS_NAME extends Command
+class {{ CLASS_NAME }} extends Command
 {
 	protected string $description = '';
 

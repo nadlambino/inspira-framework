@@ -21,8 +21,9 @@ class MakeView extends Command
 
 		if ($withComponent) {
 			$this->create('view.component', $name, app_path('Views'));
+			$view =  'components/' . pascal_to_kebab($name);
 		}
 
-		$this->create('view', pascal_to_kebab($name), base_path('assets/views'));
+		$this->create('view', $view ?? pascal_to_kebab($name), base_path('assets/views'));
 	}
 }

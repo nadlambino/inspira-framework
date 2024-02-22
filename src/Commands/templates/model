@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\{{ NAMESPACE }}\Models;
 
 use Inspira\Database\ORM\Model;
 
-class CLASS_NAME extends Model
+class {{ CLASS_NAME }} extends Model
 {
 
 }
