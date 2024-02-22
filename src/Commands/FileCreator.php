@@ -24,14 +24,14 @@ trait FileCreator
 				$this->output->error("Failed to create $filename $type");
 			}
 
-			[$directory, $filename, $target, $namespace, $namespaceMarkerSuffix] = $this->extractParts($directory, $filename);
+			[$directory, $filename, $target, $namespace, $namespaceMarkerPrefix] = $this->extractParts($directory, $filename);
 			$this->createDirectory($directory);
 
 			if (file_exists($target)) {
 				$this->output->info("$filename $type already exists.");
 			}
 
-			$this->saveContent($source, $filename, $target, $namespace, $namespaceMarkerSuffix);
+			$this->saveContent($source, $filename, $target, $namespace, $namespaceMarkerPrefix);
 
 			if (!file_exists($target)) {
 				$this->output->error("Failed to create $target $type");
@@ -60,18 +60,18 @@ trait FileCreator
 		$directory .= $parent . DIRECTORY_SEPARATOR;
 
 		$namespace = str_replace('/', '\\', $parent);
-		$namespaceMarkerSuffix = empty($namespace) ? '\\' : '';
+		$namespaceMarkerPrefix = empty($namespace) ? '\\' : '';
 
 		$target = $directory . $filename . '.php';
 
-		return [$directory, $filename, $target, $namespace, $namespaceMarkerSuffix];
+		return [$directory, $filename, $target, $namespace, $namespaceMarkerPrefix];
 	}
 
-	protected function getContents(string $source, string $className, string $namespace, string $namespaceMarkerSuffix): string
+	protected function getContents(string $source, string $className, string $namespace, string $namespaceMarkerPrefix): string
 	{
 		$content = str_replace("{{ CLASS_NAME }}", $className, file_get_contents($source));
 
-		return str_replace("{{ NAMESPACE }}$namespaceMarkerSuffix", $namespace, $content);
+		return str_replace("{{ NAMESPACE }}$namespaceMarkerPrefix", $namespace, $content);
 	}
 
 	protected function createDirectory(string $directory): self
@@ -83,9 +83,9 @@ trait FileCreator
 		return $this;
 	}
 
-	protected function saveContent(string $source, string $filename, string $target, string $namespace, string $namespaceMarkerSuffix): void
+	protected function saveContent(string $source, string $filename, string $target, string $namespace, string $namespaceMarkerPrefix): void
 	{
-		$content = $this->getContents($source, $filename, $namespace, $namespaceMarkerSuffix);
+		$content = $this->getContents($source, $filename, $namespace, $namespaceMarkerPrefix);
 
 		file_put_contents($target, $content);
 	}

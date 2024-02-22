@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\{{ NAMESPACE }}\Views;
+namespace App\Views\{{ NAMESPACE }};
 
 use Inspira\View\Component;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\{{ NAMESPACE }}\Models;
+namespace App\Models\{{ NAMESPACE }};
 
 use Inspira\Database\ORM\Model;
 

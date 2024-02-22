@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\{{ NAMESPACE }}\Controllers;
+namespace App\Controllers\{{ NAMESPACE }};
 
 use Inspira\Http\Request;
 use Inspira\View\View;
