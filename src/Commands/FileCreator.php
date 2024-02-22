@@ -71,7 +71,7 @@ trait FileCreator
 	{
 		$content = str_replace("{{ CLASS_NAME }}", $className, file_get_contents($source));
 
-		return str_replace("{{ NAMESPACE }}$namespaceMarkerPrefix", $namespace, $content);
+		return str_replace("$namespaceMarkerPrefix{{ NAMESPACE }}", $namespace, $content);
 	}
 
 	protected function createDirectory(string $directory): self
