@@ -217,12 +217,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-collection.git",
-                "reference": "02430528cc94137130cab034c182e964383ea1e2"
+                "reference": "331df0fd596f9615dc7c9eb22a68cabf8e3e43e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-collection/zipball/02430528cc94137130cab034c182e964383ea1e2",
-                "reference": "02430528cc94137130cab034c182e964383ea1e2",
+                "url": "https://api.github.com/repos/nadlambino/php-collection/zipball/331df0fd596f9615dc7c9eb22a68cabf8e3e43e0",
+                "reference": "331df0fd596f9615dc7c9eb22a68cabf8e3e43e0",
                 "shasum": ""
             },
             "require": {
@@ -259,7 +259,7 @@
                 "issues": "https://github.com/nadlambino/php-collection/issues",
                 "source": "https://github.com/nadlambino/php-collection/tree/master"
             },
-            "time": "2024-02-04T03:37:07+00:00"
+            "time": "2024-02-23T08:33:04+00:00"
         },
         {
             "name": "inspira/config",
@@ -541,18 +541,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-pdo-database.git",
-                "reference": "ea08c10d1d0cf3e1843e3d71ef06e84363f458cb"
+                "reference": "8faabc836cdd6553f33f26b09729065e783ebe0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-pdo-database/zipball/ea08c10d1d0cf3e1843e3d71ef06e84363f458cb",
-                "reference": "ea08c10d1d0cf3e1843e3d71ef06e84363f458cb",
+                "url": "https://api.github.com/repos/nadlambino/php-pdo-database/zipball/8faabc836cdd6553f33f26b09729065e783ebe0d",
+                "reference": "8faabc836cdd6553f33f26b09729065e783ebe0d",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
                 "inspira/augmentable": "dev-master",
-                "inspira/closest-match": "dev-master",
                 "inspira/collection": "dev-master",
                 "inspira/container": "dev-master",
                 "inspira/contracts": "dev-master",
@@ -589,7 +588,7 @@
                 "issues": "https://github.com/nadlambino/php-pdo-database/issues",
                 "source": "https://github.com/nadlambino/php-pdo-database/tree/master"
             },
-            "time": "2024-02-19T02:48:29+00:00"
+            "time": "2024-02-23T08:28:16+00:00"
         },
         {
             "name": "inspira/utils",
@@ -597,26 +596,32 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-utils.git",
-                "reference": "23e07048c7e36b67198a638aaafcec99e91f9388"
+                "reference": "fc5f215a485e0731213ce5bc93677cde2df5e851"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-utils/zipball/23e07048c7e36b67198a638aaafcec99e91f9388",
-                "reference": "23e07048c7e36b67198a638aaafcec99e91f9388",
+                "url": "https://api.github.com/repos/nadlambino/php-utils/zipball/fc5f215a485e0731213ce5bc93677cde2df5e851",
+                "reference": "fc5f215a485e0731213ce5bc93677cde2df5e851",
                 "shasum": ""
             },
             "require": {
                 "inspira/contracts": "dev-master",
                 "php": "^8.3"
             },
+            "require-dev": {
+                "pestphp/pest": "3.x-dev",
+                "symfony/var-dumper": "7.1.x-dev"
+            },
             "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
-                    "functions.php"
+                    "src/array.php",
+                    "src/string.php",
+                    "src/functions.php"
                 ],
                 "psr-4": {
-                    "Inspira\\Utils\\": "."
+                    "Inspira\\Utils\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -634,7 +639,7 @@
                 "issues": "https://github.com/nadlambino/php-utils/issues",
                 "source": "https://github.com/nadlambino/php-utils/tree/master"
             },
-            "time": "2024-02-21T12:23:21+00:00"
+            "time": "2024-02-23T07:43:06+00:00"
         },
         {
             "name": "inspira/view",
@@ -642,12 +647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nadlambino/php-view.git",
-                "reference": "21b943b9b346ecee7a4b711c4b062c27a7ae0b7a"
+                "reference": "e1c1a45b131dd42efae95891dca598941c867cb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nadlambino/php-view/zipball/21b943b9b346ecee7a4b711c4b062c27a7ae0b7a",
-                "reference": "21b943b9b346ecee7a4b711c4b062c27a7ae0b7a",
+                "url": "https://api.github.com/repos/nadlambino/php-view/zipball/e1c1a45b131dd42efae95891dca598941c867cb0",
+                "reference": "e1c1a45b131dd42efae95891dca598941c867cb0",
                 "shasum": ""
             },
             "require": {
@@ -655,6 +660,7 @@
                 "inspira/container": "dev-master",
                 "inspira/contracts": "dev-master",
                 "inspira/utils": "dev-master",
+                "ivopetkov/html5-dom-document-php": "2.*",
                 "php": "^8.3"
             },
             "require-dev": {
@@ -686,7 +692,52 @@
                 "issues": "https://github.com/nadlambino/php-view/issues",
                 "source": "https://github.com/nadlambino/php-view/tree/master"
             },
-            "time": "2024-02-21T09:09:22+00:00"
+            "time": "2024-02-23T07:58:27+00:00"
+        },
+        {
+            "name": "ivopetkov/html5-dom-document-php",
+            "version": "v2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivopetkov/html5-dom-document-php.git",
+                "reference": "cbbe2d5d03acc020ec78c72fdb20302cb3cdc872"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivopetkov/html5-dom-document-php/zipball/cbbe2d5d03acc020ec78c72fdb20302cb3cdc872",
+                "reference": "cbbe2d5d03acc020ec78c72fdb20302cb3cdc872",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": "7.0.*|7.1.*|7.2.*|7.3.*|7.4.*|8.0.*|8.1.*|8.2.*|8.3.*"
+            },
+            "require-dev": {
+                "ivopetkov/docs-generator": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivo Petkov",
+                    "email": "ivo@ivopetkov.com",
+                    "homepage": "http://ivopetkov.com"
+                }
+            ],
+            "description": "HTML5 DOMDocument PHP library (extends DOMDocument)",
+            "support": {
+                "issues": "https://github.com/ivopetkov/html5-dom-document-php/issues",
+                "source": "https://github.com/ivopetkov/html5-dom-document-php/tree/v2.7.0"
+            },
+            "time": "2023-11-24T17:25:06+00:00"
         },
         {
             "name": "phpoption/phpoption",

@@ -16,7 +16,6 @@ use Inspira\Http\Response;
 use Inspira\Http\Router\Route;
 use Inspira\Http\Router\Router;
 use Inspira\Http\Status;
-use Inspira\View\Exceptions\RawViewPathNotFoundException;
 use Inspira\View\Exceptions\ViewNotFoundException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -43,7 +42,6 @@ class Pipeline
 	 * @throws UnresolvableBindingException
 	 * @throws UnresolvableBuiltInTypeException
 	 * @throws UnresolvableMissingTypeException
-	 * @throws RawViewPathNotFoundException
 	 */
 	public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
 	{
@@ -76,9 +74,6 @@ class Pipeline
 		return $handler->handle($request);
 	}
 
-	/**
-	 * @throws RawViewPathNotFoundException
-	 */
 	private function handleErrorResponse(ResponseInterface &$response): void
 	{
 		$response = match ($response->getStatusCode()) {
