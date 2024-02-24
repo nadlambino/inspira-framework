@@ -97,7 +97,7 @@ class Application extends Container
 	/**
 	 * Application constructor
 	 */
-	public function __construct(private ?ClassLoader $loader)
+	public function __construct(private ?ClassLoader $loader = null)
 	{
 		$this->singleton(Application::class, fn() => $this);
 		$this->singleton(Container::class, fn() => $this);
