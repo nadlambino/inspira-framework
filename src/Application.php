@@ -66,7 +66,7 @@ class Application extends Container
 	 *
 	 * @var string $viewsPath
 	 */
-	private string $viewsPath = '/app/Views';
+	private string $viewsPath = '/assets/views';
 
 	/**
 	 * The path where the cache files are located

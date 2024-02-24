@@ -13,19 +13,11 @@ class ApplicationProvider extends Provider
 {
 	public function register(): void
 	{
-		$debug = filter_var(Env::get('APP_DEBUG', true), FILTER_VALIDATE_BOOL);
-		$errorPage = new ErrorPage();
-		$errorPage->isEnabled($debug)
-			->isRunningOnConsole($this->app->isConsoleApp())
-			->register();
+		$this->registerErrorPage();
 
 		$this->app->setResolved(Env::class, new Env($this->app->getBasePath()));
 		$this->app->setResolved(Config::class, new Config($this->app->getConfigsPath()));
-		$this->app->setResolved(View::class, new View(
-			$this->app->getViewsPath(),
-			$this->app->getCachePath(),
-			Config::get('app.views.use_cached', true)
-		));
+		$this->registerView();
 
 		$this->app->singleton(Config::class);
 		$this->app->singleton(Env::class);
@@ -35,5 +27,28 @@ class ApplicationProvider extends Provider
 	public function start(): void
 	{
 		date_default_timezone_set(Config::get('app.timezone', 'UTC'));
+	}
+
+	private function registerErrorPage()
+	{
+		$onDebugMode = filter_var(Env::get('APP_DEBUG', true), FILTER_VALIDATE_BOOL);
+
+		$errorPage = new ErrorPage();
+
+		$errorPage->isEnabled($onDebugMode)
+			->isRunningOnConsole($this->app->isConsoleApp())
+			->register();
+	}
+
+	private function registerView()
+	{
+		$view = (new View(
+			$this->app->getViewsPath(),
+			$this->app->getCachePath(),
+			Config::get('app.views.use_cached', true)
+		))->setComponentPrefix('app')
+			->autoDiscoverComponentsFrom('App\Views');
+
+		$this->app->setResolved(View::class, $view);
 	}
 }
