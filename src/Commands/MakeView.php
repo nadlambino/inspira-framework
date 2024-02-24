@@ -6,6 +6,7 @@ namespace Inspira\Framework\Commands;
 
 use Inspira\Console\Commands\Command;
 use function Inspira\Utils\to_kebab;
+use function Inspira\Utils\to_pascal;
 
 class MakeView extends Command
 {
@@ -17,14 +18,17 @@ class MakeView extends Command
 
 	public function run()
 	{
-		$name = $this->input->getArgument('name');
+		$name = to_kebab($this->input->getArgument('name'));
 		$withComponent = $this->input->getArgument('c');
 
 		if ($withComponent) {
-			$this->create('view.component', $name, app_path('Views'));
-			$view =  'components/' . to_kebab($name);
+			$className = ucwords(to_pascal($name), '/');
+
+			$this->create('view.component', $className, app_path('Views'), ['VIEW_NAME' => 'protected ?string $view = ' . "'$name';"]);
+
+			$view =  'components/' . $name;
 		}
 
-		$this->create('view', $view ?? to_kebab($name), base_path('assets/views'));
+		$this->create('view', $view ?? $name, base_path('assets/views'));
 	}
 }

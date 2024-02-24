@@ -12,7 +12,7 @@ use Throwable;
  */
 trait FileCreator
 {
-	protected function create(string $type, string $filename, string $directory): void
+	protected function create(string $type, string $filename, string $directory, array $replacements = []): void
 	{
 		try {
 			$filename = preg_replace('/[^a-zA-Z\d\-_.\/]/', '', $filename);
@@ -24,14 +24,17 @@ trait FileCreator
 				$this->output->error("Failed to create $filename $type");
 			}
 
-			[$directory, $filename, $target, $namespace, $namespaceMarkerPrefix] = $this->extractParts($directory, $filename);
+			[$directory, $filename, $target, $namespace] = $this->extractParts($directory, $filename);
 			$this->createDirectory($directory);
 
 			if (file_exists($target)) {
 				$this->output->info("$filename $type already exists.");
 			}
 
-			$this->saveContent($source, $filename, $target, $namespace, $namespaceMarkerPrefix);
+			$replacements['CLASS_NAME'] = $filename;
+			$replacements['NAMESPACE'] = $namespace;
+
+			$this->saveContent($source, $target, $replacements);
 
 			if (!file_exists($target)) {
 				$this->output->error("Failed to create $target $type");
@@ -60,18 +63,11 @@ trait FileCreator
 		$directory .= $parent . DIRECTORY_SEPARATOR;
 
 		$namespace = str_replace('/', '\\', $parent);
-		$namespaceMarkerPrefix = empty($namespace) ? '\\' : '';
+		$namespace = empty($namespace) ? '' : '\\' . $namespace;
 
 		$target = $directory . $filename . '.php';
 
-		return [$directory, $filename, $target, $namespace, $namespaceMarkerPrefix];
-	}
-
-	protected function getContents(string $source, string $className, string $namespace, string $namespaceMarkerPrefix): string
-	{
-		$content = str_replace("{{ CLASS_NAME }}", $className, file_get_contents($source));
-
-		return str_replace("$namespaceMarkerPrefix{{ NAMESPACE }}", $namespace, $content);
+		return [$directory, $filename, $target, $namespace];
 	}
 
 	protected function createDirectory(string $directory): self
@@ -83,10 +79,21 @@ trait FileCreator
 		return $this;
 	}
 
-	protected function saveContent(string $source, string $filename, string $target, string $namespace, string $namespaceMarkerPrefix): void
+	protected function saveContent(string $source, string $target, array $replacements): void
 	{
-		$content = $this->getContents($source, $filename, $namespace, $namespaceMarkerPrefix);
+		$content = $this->getContents($source, $replacements);
 
 		file_put_contents($target, $content);
+	}
+
+	protected function getContents(string $source, array $replacements): string
+	{
+		$contents = file_get_contents($source);
+
+		foreach ($replacements as $key => $value) {
+			$contents = str_replace("{{ $key }}", $value, $contents);
+		}
+
+		return $contents;
 	}
 }

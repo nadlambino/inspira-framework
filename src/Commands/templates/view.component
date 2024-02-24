@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Views\{{ NAMESPACE }};
+namespace App\Views{{ NAMESPACE }};
 
 use Inspira\View\Component;
 
 class {{ CLASS_NAME }} extends Component
 {
-
+    {{ VIEW_NAME }}
 }
