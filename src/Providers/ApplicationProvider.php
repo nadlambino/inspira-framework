@@ -47,7 +47,7 @@ class ApplicationProvider extends Provider
 			$this->app->getCachePath(),
 			Config::get('app.views.use_cached', true)
 		))->setComponentPrefix('app')
-			->autoDiscoverComponentsFrom('App\Views');
+			->autoloadComponentsFrom(app_path('Views'), base_path());
 
 		$this->app->setResolved(View::class, $view);
 	}
