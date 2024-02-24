@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Inspira\Framework;
 
+use Composer\Autoload\ClassLoader;
 use Exception;
 use Inspira\Container\Container;
 use Inspira\Framework\Providers\ApplicationProvider;
 use Inspira\Framework\Providers\DatabaseProvider;
 use Inspira\Framework\Providers\HttpProvider;
 use Inspira\Http\Request;
+use function Inspira\Utils\get_files_from;
 
 /**
  * @author Ronald Lambino
@@ -35,6 +37,8 @@ class Application extends Container
 	private string $appPath = '/app';
 
 	private string $providersPath = '/providers';
+
+	private string $providersNamespace = 'Providers\\';
 
 	/**
 	 * The path where the routes.php is located
@@ -93,25 +97,32 @@ class Application extends Container
 	/**
 	 * Application constructor
 	 */
-	public function __construct()
+	public function __construct(private ?ClassLoader $loader)
 	{
 		$this->singleton(Application::class, fn() => $this);
 		$this->singleton(Container::class, fn() => $this);
-		$this->addProviders($this->getApplicationProviders());
 		parent::__construct();
 	}
 
-	protected function getApplicationProviders(): array
+	public function autoloadProvidersFrom(string $namespace): self
 	{
-		$files = glob($this->getProvidersPath() . '/*.php');
+		$this->providersNamespace = trim($namespace, '\\') . '\\';
 
-		foreach ($files as $file) {
-			require_once $file;
-		}
+		return $this;
+	}
 
-		$classes = get_declared_classes();
+	protected function getProviders(): array
+	{
+		$this->loader->addPsr4($this->providersNamespace, $this->getProvidersPath());
 
-		return collection($classes)->whereLike('', '%Providers')->toArray();
+		$files = get_files_from($this->getProvidersPath(), 'php');
+
+		return array_filter(array_map(function($file) {
+			$filename = basename($file, '.' . pathinfo($file, PATHINFO_EXTENSION));
+			$class = $this->providersNamespace . $filename;
+
+			return class_exists($class) ? $class : null;
+		}, $files));
 	}
 
 	public function addProviders(array $providers): self
@@ -127,6 +138,12 @@ class Application extends Container
 	 */
 	public function boot(): self
 	{
+		if (!$this->loader && file_exists($vendor = $this->getBasePath() . '/vendor/autoload.php')) {
+			$this->loader = require $vendor;
+		}
+
+		$this->addProviders($this->getProviders());
+
 		foreach ($this->providers as $provider) {
 			$this->singleton($provider);
 
