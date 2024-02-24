@@ -118,8 +118,7 @@ class Application extends Container
 		$files = get_files_from($this->getProvidersPath(), 'php');
 
 		return array_filter(array_map(function($file) {
-			$filename = basename($file, '.' . pathinfo($file, PATHINFO_EXTENSION));
-			$class = $this->providersNamespace . $filename;
+			$class = ucfirst(trim(str_replace([$this->getBasePath(), '.php', '/'], ['', '', '\\'], $file), '\\'));
 
 			return class_exists($class) ? $class : null;
 		}, $files));
