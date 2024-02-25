@@ -45,11 +45,7 @@ class ApplicationProvider extends Provider
 	{
 		$this->app->singleton(Directives::class);
 
-		$view = (new View(
-			Config::get('view', []),
-			$this->app,
-			$this->app->make(Directives::class)
-		))->setComponentPrefix('app');
+		$view = (new View(Config::get('view', []), $this->app))->setComponentPrefix('app');
 
 		$this->app->setResolved(View::class, $view);
 	}
