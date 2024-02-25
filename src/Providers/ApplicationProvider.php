@@ -7,6 +7,7 @@ namespace Inspira\Framework\Providers;
 use Inspira\Config\Config;
 use Inspira\Config\Env;
 use Inspira\ErrorPage\ErrorPage;
+use Inspira\View\Directives;
 use Inspira\View\View;
 
 class ApplicationProvider extends Provider
@@ -42,10 +43,12 @@ class ApplicationProvider extends Provider
 
 	private function registerView()
 	{
+		$this->app->singleton(Directives::class);
+
 		$view = (new View(
-			$this->app->getViewsPath(),
-			$this->app->getCachePath(),
-			Config::get('app.views.use_cached', true)
+			Config::get('view', []),
+			$this->app,
+			$this->app->make(Directives::class)
 		))->setComponentPrefix('app');
 
 		$this->app->setResolved(View::class, $view);
