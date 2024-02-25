@@ -12,7 +12,7 @@ use Throwable;
  */
 trait FileCreator
 {
-	protected function create(string $type, string $filename, string $directory, array $replacements = []): void
+	protected function create(string $type, string $filename, string $directory, array $replacements = []): bool
 	{
 		try {
 			$filename = preg_replace('/[^a-zA-Z\d\-_.\/]/', '', $filename);
@@ -21,14 +21,18 @@ trait FileCreator
 			$type = $this->getType($type);
 
 			if (!file_exists($source)) {
-				$this->output->error("Failed to create $filename $type");
+				$this->output->error("Failed to create $filename $type", false);
+
+				return false;
 			}
 
 			[$directory, $filename, $target, $namespace] = $this->extractParts($directory, $filename);
 			$this->createDirectory($directory);
 
 			if (file_exists($target)) {
-				$this->output->info("$filename $type already exists.");
+				$this->output->info("$filename $type already exists.", false);
+
+				return false;
 			}
 
 			$replacements['CLASS_NAME'] = $filename;
@@ -37,12 +41,18 @@ trait FileCreator
 			$this->saveContent($source, $target, $replacements);
 
 			if (!file_exists($target)) {
-				$this->output->error("Failed to create $target $type");
+				$this->output->error("Failed to create $target $type", false);
+
+				return false;
 			}
 
 			$this->output->success("$filename $type is successfully created", false);
+
+			return true;
 		} catch (Throwable $exception) {
-			$this->output->error($exception->getMessage());
+			$this->output->error($exception->getMessage(), false);
+
+			return false;
 		}
 	}
 
