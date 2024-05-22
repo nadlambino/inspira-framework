@@ -10,12 +10,12 @@ class ApplicationServer extends Command
 {
 	protected string $description = 'Serve the application';
 
-	protected array $optionals = ['host', 'port'];
+	protected array $options = ['host', 'port'];
 
-	public function run()
-	{
-		$port = $this->input->getArgument('port', '8000');
-		$host = $this->input->getArgument('host', 'localhost');
+	public function run() : void
+    {
+		$port = $this->input->getOption('port', '8000');
+		$host = $this->input->getOption('host', 'localhost');
 		$address = "$host:$port";
 		$root = 'public';
 		$cmd = "php -S $address -t $root";

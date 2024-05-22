@@ -13,30 +13,31 @@ use function Inspira\Utils\to_pascal;
 
 class MakeView extends Command
 {
-	use FileCreator;
+    use FileCreator;
 
-	protected string $description = "Make a view file or component class";
+    protected string $description = "Make a view file";
 
-	protected array $requires = ['name'];
+    protected ?string $argument = 'name';
 
+    protected array $options = ['component'];
 
-	public function __construct(InputInterface $input, OutputInterface $output, protected Config $config)
-	{
-		parent::__construct($input, $output);
-	}
+    public function __construct(InputInterface $input, OutputInterface $output, protected Config $config)
+    {
+        parent::__construct($input, $output);
+    }
 
-	public function run()
-	{
-		$name = to_kebab($this->input->getArgument('name'));
-		$withComponent = $this->input->getArgument('c');
-		$viewName = $withComponent ? 'components/' . $name : $name;
+    public function run() : void
+    {
+        $name = to_kebab($this->input->getArgument());
+        $withComponent = $this->input->getOption('component');
+        $viewName = $withComponent ? 'components/' . $name : $name;
 
-		$created = $this->create('view', $viewName, $this->config->get('view.views_path', base_path('assets/views')));
+        $created = $this->create('view', $viewName, $this->config->get('view.views_path', base_path('assets/views')));
 
-		if ($created && $withComponent) {
-			$className = ucwords(to_pascal($name), '/');
+        if ($created && $withComponent) {
+            $className = ucwords(to_pascal($name), '/');
 
-			$this->create('view.component', $className, app_path('Views'), ['VIEW_NAME' => 'protected ?string $view = ' . "'$name';"]);
-		}
-	}
+            $this->create('view.component', $className, app_path('Views'), ['VIEW_NAME' => 'protected ?string $view = ' . "'$name';"]);
+        }
+    }
 }

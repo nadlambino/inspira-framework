@@ -12,11 +12,11 @@ class MakeCommand extends Command
 
 	protected string $description = "Make a command class";
 
-	protected array $requires = ['name'];
+	protected ?string $argument = 'name';
 
-	public function run()
-	{
-		$name = $this->input->getArgument('name');
+	public function run() : void
+    {
+		$name = $this->input->getArgument();
 		$directory = base_path('console/Commands');
 
 		$this->create('command', $name, $directory);

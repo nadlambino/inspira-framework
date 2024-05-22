@@ -8,23 +8,28 @@ use Inspira\Console\Commands\Command;
 
 class {{ CLASS_NAME }} extends Command
 {
+    /**
+     * Define here the description of this command
+     *
+     * @var string $description
+     */
 	protected string $description = '';
 
 	/**
-	 * Define here the required arguments of this command
+	 * Define here the argument of this command
 	 *
-	 * @var array $requires
+	 * @var ?string $argument
 	 */
-	protected array $requires = [];
+	protected ?string $argument = null;
 
 	/**
-	 * Define here the optional arguments of this command
+	 * Define here the options of this command
 	 *
-	 * @var array $optionals
+	 * @var array $options
 	 */
-	protected array $optionals = [];
+	protected array $options = [];
 
-	public function run()
+	public function run() : void
 	{
 
 	}

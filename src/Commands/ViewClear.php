@@ -18,8 +18,8 @@ class ViewClear extends Command
 		parent::__construct($input, $output);
 	}
 
-	public function run()
-	{
+	public function run() : void
+    {
 		$cleared = $this->view->clearCache();
 
 		if ($cleared === false) {

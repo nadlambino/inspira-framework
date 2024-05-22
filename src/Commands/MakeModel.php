@@ -12,11 +12,11 @@ class MakeModel extends Command
 
 	protected string $description = "Make a model class";
 
-	protected array $requires = ['name'];
+    protected ?string $argument = 'name';
 
-	public function run()
-	{
-		$name = $this->input->getArgument('name');
+    public function run() : void
+    {
+        $name = $this->input->getArgument();
 		$directory = app_path('Models');
 
 		$this->create('model', $name, $directory);

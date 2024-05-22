@@ -2,7 +2,7 @@
 
 namespace Inspira\Framework\Commands;
 
-use Inspira\Console\Commands\CommandRegistry as Registry;
+use Inspira\Console\Commands\Registry;
 
 class CommandRegistry extends Registry
 {
